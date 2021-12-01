@@ -19,4 +19,28 @@ def count_inc():
     return c
 
 
-print(count_inc())
+def count_inc_slide():
+    c = 0
+    i = 0
+
+    l = [int(line.strip()) for line in fileinput.input()]
+    last = l[0]
+    for i in range(1, len(l)):
+        if i == 1:
+            s = l[0] + l[1]
+        elif i == len(l) - 2:
+            s = l[len(l) - 3] + l[len(l) - 2]
+        elif i == len(l) - 1:
+            s = l[len(l) - 1]
+        else:
+            s = l[i - 1] + l[i - 2] + l[i]
+
+        if s > last:
+            c += 1
+        last = s
+
+    return c
+
+
+print("simple", count_inc())
+print("sliding window", count_inc_slide())

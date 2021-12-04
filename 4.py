@@ -52,3 +52,17 @@ def doit(fname):
 
 doit("4-sample.txt")  # 4512
 doit("4.txt")  # 51034
+
+# part 2 - let the squid win
+def doit2(fname):
+    boards, calls = parse(fname)
+    while len(boards) > 0:
+        (win_b, call) = play(boards, calls)
+        boards.remove(win_b)
+    s = score(win_b, call)
+    print(win_b, call)
+    print("solution: ", s)
+
+
+doit2("4-sample.txt")  #
+doit2("4.txt")  #

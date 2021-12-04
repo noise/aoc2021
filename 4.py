@@ -34,7 +34,7 @@ def play(boards, calls):
         for i in range(len(boards)):
             boards[i] = mark(boards[i], c)
             if check(boards[i]):
-                print("got winner:", boards[i])
+                #print("got winner:", boards[i])
                 return boards[i], c
 
 
@@ -63,6 +63,5 @@ def doit2(fname):
     print(win_b, call)
     print("solution: ", s)
 
-
-doit2("4-sample.txt")  #
-doit2("4.txt")  #
+doit2("4-sample.txt")  # 1924
+doit2("4.txt")  # 5434

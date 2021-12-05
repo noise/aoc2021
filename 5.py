@@ -30,7 +30,7 @@ def horz_vert(l):
     return horz(l) or vert(l)
 
 
-def render(lines, plot, size):
+def render(lines, plot, size, diag=False):
     for l in lines:
         if horz(l):
             # print("horz ", l)
@@ -46,6 +46,17 @@ def render(lines, plot, size):
                 plot[y][x] += (
                     1 if (y >= l[1] and y <= l[3]) or (y <= l[1] and y >= l[3]) else 0
                 )
+        elif diag:  # meh
+            print("diag", l)
+            steps = abs(l[0] - l[2])  # since only 45deg
+            dx = 1 if l[2] - l[0] > 0 else -1
+            dy = 1 if l[3] - l[1] > 0 else -1
+            x = l[0]
+            y = l[1]
+            for _ in range(steps + 1):
+                plot[y][x] += 1
+                x += dx
+                y += dy
     return plot
 
 
@@ -58,13 +69,16 @@ def count_intersects(plot):
     return cnt
 
 
-def doit(fname, size):
+def doit(fname, size, diag=False):
     lines = parse(fname)
     plot = [[0 for _ in range(size)] for _ in range(size)]
-    plot = render(lines, plot, size)
+    plot = render(lines, plot, size, diag)
     # show(plot)
     print("solution:", count_intersects(plot))
 
 
 doit("5-sample.txt", 10)  # 5
-doit("5.txt", 1000)  # 5698
+# doit("5.txt", 1000)  # 5698
+
+doit("5-sample.txt", 10, True)  # 12
+doit("5.txt", 1000, True)  # 15463

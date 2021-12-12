@@ -18,7 +18,6 @@ class Graph:
             self.graph[b].append(a)
 
     def walk(self, a, dest, visited, path):
-        # print(">>>>>>>", a,dest,a in visited)
         path.append(a)
         if a.islower():
             visited[a] = True
@@ -26,12 +25,10 @@ class Graph:
         if a == dest:
             # end, backout
             self.cnt += 1
-            print("path", path, self.cnt)
         else:
             # explore all edges from here
             for c in self.graph[a]:
-                if not c in visited or not visited[c]:  # or visited['small'] == c:
-                    # print(c,dest)
+                if not c in visited or not visited[c]:
                     self.walk(c, dest, visited, path)
 
         path.pop()
@@ -44,34 +41,26 @@ class Graph:
 
     def walk2(self, a, dest, visited, path):
         path.append(a)
-        print(">>>>>>>", a, dest, a in visited, path, self.cnt)
         if a.islower():
             visited[a] = True
 
         if a == dest:
             # end, backout
             self.cnt += 1
-            print("path", path, self.cnt)
         else:
-            # explore all edges from here
             for c in self.graph[a]:
                 if c.isupper():
                     self.walk2(c, dest, visited, path)
                 elif c.islower() and c != "start":
-                    # print("islower", c, visited[c] if c in visited else False, self.lowerdoubles(path))
                     if (c in visited and visited[c]) and self.lowerdoubles(path) == 0:
-                        # print("walking when visited but not double", c)
                         self.walk2(c, dest, visited, path)
                     elif c not in visited or visited[c] == False:
-                        # print("walkign when not visited", c)
                         self.walk2(c, dest, visited, path)
 
-        # Remove current vertex from path[] and mark it as unvisited
         path.pop()
         if a not in path:
             visited[a] = False
 
-    # Prints all paths from 's' to 'd'
     def paths(self, a, b, small):
         visited = {"small": None}
         paths = []
@@ -97,7 +86,6 @@ def doit(fname, small=False):
     edges = parse(fname)
     graph = Graph(len(edges))
     for a, b in edges:
-        # print(a,b)
         graph.addEdge(a, b)
 
     graph.printg()
@@ -108,9 +96,9 @@ def doit(fname, small=False):
 # doit("12-sample1.txt")  # 10
 # doit("12-sample2.txt")  # 19
 # doit("12-sample3.txt")  # 226
-# doit("12.txt")  # 5874
+doit("12.txt")  # 5874
 
 # doit("12-sample1.txt", True)  # 36
 # doit("12-sample2.txt", True)  # 103
-doit("12-sample3.txt", True)  # 3509
-# doit("12.txt", True)  # 153592
+# doit("12-sample3.txt", True)  # 3509
+doit("12.txt", True)  # 153592

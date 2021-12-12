@@ -5,9 +5,6 @@
 """
 
 
-from os import sync
-
-
 def parse(fname):
     with open(fname) as fp:
         grid = [[int(n) for n in l.strip()] for l in fp.readlines()]

@@ -26,7 +26,6 @@ class Graph:
             # end, backout
             self.cnt += 1
         else:
-            # explore all edges from here
             for c in self.graph[a]:
                 if not c in visited or not visited[c]:
                     self.walk(c, dest, visited, path)
@@ -93,12 +92,12 @@ def doit(fname, small=False):
     print("solution: ", cnt)
 
 
-# doit("12-sample1.txt")  # 10
-# doit("12-sample2.txt")  # 19
-# doit("12-sample3.txt")  # 226
+doit("12-sample1.txt")  # 10
+doit("12-sample2.txt")  # 19
+doit("12-sample3.txt")  # 226
 doit("12.txt")  # 5874
 
-# doit("12-sample1.txt", True)  # 36
-# doit("12-sample2.txt", True)  # 103
-# doit("12-sample3.txt", True)  # 3509
+doit("12-sample1.txt", True)  # 36
+doit("12-sample2.txt", True)  # 103
+doit("12-sample3.txt", True)  # 3509
 doit("12.txt", True)  # 153592

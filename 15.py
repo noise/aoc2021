@@ -69,8 +69,8 @@ def doit(fname):
     risks = parse(fname)
     h = len(risks)
     w = len(risks[0])
-    path = ucs(risks, (0, 0), (w - 1, h - 1))
-    print("solution:", path[(w - 1, h - 1)])
+    costs = ucs(risks, (0, 0), (w - 1, h - 1))
+    print("solution:", costs[(w - 1, h - 1)])
 
 
 def doit2(fname):
@@ -78,8 +78,8 @@ def doit2(fname):
     risks = grow(risks, 5)
     h = len(risks)
     w = len(risks[0])
-    path = ucs(risks, (0, 0), (w - 1, h - 1))
-    print("solution:", path[(w - 1, h - 1)])
+    costs = ucs(risks, (0, 0), (w - 1, h - 1))
+    print("solution:", costs[(w - 1, h - 1)])
 
 
 doit("15-sample.txt")  # 40
